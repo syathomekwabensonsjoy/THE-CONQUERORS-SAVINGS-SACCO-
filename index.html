@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THE CONQUERORS SAVINGS SACCO</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+html, body{
+height:100%;
+margin:0;
+}
+
+body{
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+.main-content{
+flex:1;
+}
+
+.page{
+min-height:100%;
+padding:20px;
+box-sizing:border-box;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#111;
+color:white;
+font-size:14px;
+margin-top:auto;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="app-header">
+
+<img src="img/log.png" class="app-logo">
+
+<div class="app-title">
+THE CONQUERORS SAVINGS SACCO
+</div>
+
+<div class="app-motto">
+Save Together, Grow Together
+</div>
+
+</div>
+
+<div class="main-content">
+
+<!-- HOME PAGE -->
+
+<div id="homePage" class="page">
+
+<h2>WELCOME</h2>
+
+<p>
+Welcome to <b>THE CONQUERORS SAVINGS SACCO</b>, where unity and discipline turn small savings into big opportunities.
+Here, every member contributes to a stronger financial future for all.
+Together we support, grow, and succeed as a family.
+<b>Save Together, Grow Together</b>.
+</p>
+
+<button onclick="showLogin()">Continue</button>
+
+<!-- SACCO INFO BOXES -->
+
+<div class="sacco-info">
+
+<div class="info-box">
+<h3>About</h3>
+<p>
+THE CONQUERORS SAVINGS SACCO is a family-based savings group that promotes financial discipline, cooperation, and mutual support among members to help them grow their savings and build a stable financial future together.
+</p>
+</div>
+
+<div class="info-box">
+<h3>Mission</h3>
+<p>
+To promote disciplined saving, cooperation, and shared financial growth among family members for a stable and successful future.
+</p>
+</div>
+
+<div class="info-box">
+<h3>Services</h3>
+<p>
+Member savings accounts, deposits, withdrawals, financial records, and savings monitoring.
+</p>
+</div>
+
+</div>
+<!-- ABOUT DEVELOPER CARD (Homepage Only) -->
+
+<a href="developer.html" class="developer-card">
+
+<img src="img/admin.jpg" class="dev-img">
+
+<div class="dev-info">
+<h3>ABOUT THE DEVELOPER</h3>
+<p>SYATHOMEKWA BENSONS JOY</p>
+<p style="font-size:13px;color:gray;">Tap to view profile</p>
+</div>
+
+</a>
+
+</div>
+<!-- LOGIN PAGE -->
+
+<div id="loginPage" class="page" style="background: linear-gradient(135deg, #2F4F4F, #3A5F5F);">
+
+<h2>Account Access</h2>
+
+<button onclick="showUserLogin()">User Login</button>
+<button onclick="showCreate()">Create Account</button>
+<button onclick="showAdminLogin()">Admin Login</button>
+<button onclick="goHome()">Back</button>
+
+</div>
+
+
+<!-- USER LOGIN -->
+
+<div id="userLoginPage" class="page" style="background:pink;">
+
+<h2>User Login</h2>
+
+<input id="loginUser" placeholder="Username">
+<input id="loginPin" type="password" placeholder="PIN">
+
+<button onclick="loginUser()">Login</button>
+<button onclick="showReset()">Forgot PIN</button>
+<button onclick="showLogin()">Back</button>
+
+</div>
+
+
+<!-- CREATE ACCOUNT -->
+
+<div id="createPage" class="page" style="background:pink;">
+
+<h2>Create Account</h2>
+
+<input id="newUser" placeholder="Username">
+<input id="newPhone" placeholder="Phone">
+<input id="newPin" type="password" placeholder="PIN">
+<input id="confirmPin" type="password" placeholder="Confirm PIN">
+<input id="newAnswer" placeholder="Security Answer">
+
+<h3>Terms and Conditions – The Conquerors Savings SACCO</h3>
+
+<p style="font-size:14px; max-height:150px; overflow:auto; border:1px solid #ccc; padding:10px; background:#fff;">
+
+Membership in The Conquerors Savings SACCO requires commitment to regular saving and responsible participation. Every member is expected to contribute agreed savings within the set timelines to promote the growth and sustainability of the SACCO.
+
+All deposits, withdrawals, and other transactions must be properly recorded and confirmed by the SACCO administrator. Members must provide accurate personal information during registration.
+
+Members are responsible for protecting their account login details. Any misuse of the SACCO platform may lead to suspension or termination.
+
+The SACCO leadership reserves the right to update these terms when necessary to improve service delivery and financial management.
+
+</p>
+
+<br>
+
+<label>
+<input type="checkbox" id="agreeTerms">
+I agree to the Terms and Conditions of THE CONQUERORS SAVINGS SACCO
+</label>
+
+<br><br>
+
+<button onclick="createAccount()">Create Account</button>
+<button onclick="createAccount()">Create</button>
+
+<button onclick="showLogin()">Back</button>
+
+</div>
+
+
+<!-- RESET PASSWORD -->
+
+<div id="resetPage" class="page" style="background:red;">
+
+<h2>Reset Password</h2>
+
+<input id="resetUser" placeholder="Username">
+<input id="resetAnswer" placeholder="Security Answer">
+<input id="newPinReset" type="password" placeholder="New PIN">
+
+<button onclick="resetPassword()">Reset</button>
+<button onclick="showLogin()">Back</button>
+
+</div>
+
+
+<!-- ADMIN LOGIN -->
+
+<div id="adminLogin" class="page" style="background:olive;">
+
+<h2>Admin Login</h2>
+
+<input id="adminPass" type="password">
+
+<button onclick="loginAdmin()">Login</button>
+<button onclick="showLogin()">Back</button>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="page" style="background:skyblue;">
+
+<h2>Dashboard</h2>
+
+<h3>Total Savings: UGX <span id="totalSavings">0</span></h3>
+
+<canvas id="mainChart" height="200"></canvas>
+
+<button onclick="openMembersPage()">Members</button>
+<button onclick="logout()">Logout</button>
+
+</div>
+
+
+<!-- MEMBERS PAGE -->
+
+<div id="membersPage" class="page" style="background:skyblue;">
+
+<h2>Members</h2>
+
+<input id="searchMembersInput" placeholder="Search members" onkeyup="searchMembers()">
+
+<button onclick="showAddMember()">➕ Add New Member</button>
+
+<div id="membersList"></div>
+
+<button onclick="openDashboard()">Back</button>
+
+</div>
+
+
+<!-- ADD MEMBER -->
+
+<div id="addMemberPage" class="page" style="background:navy;">
+
+<h2>Add New Member</h2>
+
+<input id="newMemberName" placeholder="Member Name">
+<input id="newMemberPhone" placeholder="Phone Number">
+
+<p>Upload Member Photo</p>
+
+<input type="file" id="newMemberPhoto">
+
+<button onclick="addMember()">Save Member</button>
+<button onclick="openMembersPage()">Back</button>
+
+</div>
+
+
+<!-- MEMBER PROFILE -->
+
+<div id="memberPage" class="page" style="background:orange;">
+
+<div class="member-profile">
+
+<img id="profileImg" class="profile-img" src="img/home.jpg">
+
+<h2 id="memberTitle"></h2>
+
+<p><b>Phone:</b> <span id="memberPhone"></span></p>
+<p><b>Member ID:</b> <span id="memberID"></span></p>
+<p><b>Joined:</b> <span id="memberJoin"></span></p>
+
+<h3>Balance: UGX <span id="balance">0</span></h3>
+
+</div>
+
+<div id="userControls">
+
+<a id="callBtn">📞 Call Member</a>
+
+<br><br>
+
+<a id="whatsappBtn" target="_blank">💬 WhatsApp</a>
+
+<br><br>
+
+<button onclick="downloadStatement()">📄 Download Statement</button>
+
+</div>
+
+<div id="adminControls">
+
+<h3>Transaction</h3>
+
+<input id="amount" type="number" placeholder="Enter amount">
+<input id="reason" placeholder="Reason">
+
+<button onclick="addSaving()">Deposit</button>
+<button onclick="withdraw()">Withdraw</button>
+<button onclick="editTransaction()">Edit Transaction</button>
+<button onclick="deleteTransaction()">Delete Transaction</button>
+<button onclick="showEditMember()">Edit Member</button>
+
+</div>
+
+<h3>Transaction History</h3>
+
+<table class="txn-table">
+
+<thead>
+
+<tr>
+<th>#</th>
+<th>Date</th>
+<th>Reason</th>
+<th>Deposit</th>
+<th>Withdraw</th>
+<th>Balance</th>
+</tr>
+
+</thead>
+
+<tbody id="txnHistory"></tbody>
+
+</table>
+
+<button onclick="openMembersPage()">Back</button>
+
+</div>
+
+
+<!-- EDIT MEMBER PAGE -->
+
+<div id="editMemberPage" class="page" style="background:pink;">
+
+<h2>Edit Member</h2>
+
+<input id="editMemberName" placeholder="Member Name">
+<input id="editMemberPhone" placeholder="Phone">
+
+<p>Change Photo</p>
+
+<input type="file" id="editMemberPhoto">
+
+<button onclick="saveMemberEdit()">Save Changes</button>
+<button onclick="openMember(currentMember)">Cancel</button>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<p>© <span id="year"></span> <b>THE CONQUERORS SAVINGS SACCO</b>. All Rights Reserved.</p>
+<p>Save Together, Grow Together</p>
+
+</footer>
+
+
+<script>
+document.getElementById("year").innerText = new Date().getFullYear();
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
