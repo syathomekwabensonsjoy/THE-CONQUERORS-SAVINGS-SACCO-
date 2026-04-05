@@ -303,10 +303,10 @@ row.innerHTML=`
 <td>${t.amount}</td>
 <td>${t.balance}</td>
 <td>
+<button class="receiptBtn" onclick="downloadReceipt(${i})">Receipt</button>
 <button onclick="deleteTransaction(${i})">Delete</button>
 </td>
 `;
-
 table.appendChild(row);
 
 });
@@ -691,4 +691,75 @@ window.goHome();
 function copyNumber(){
 navigator.clipboard.writeText("0776083223");
 alert("Deposit number copied!");
+}
+function downloadReceipt(index){
+
+let rows = document.querySelectorAll("#txnHistory tr");
+let row = rows[index].children;
+
+let date = row[1].innerText;
+let type = row[2].innerText;
+let amount = row[3].innerText;
+let balance = row[4].innerText;
+
+let member = document.getElementById("memberTitle").innerText;
+
+let receipt = `
+SACCO RECEIPT
+---------------------
+Member: ${member}
+Date: ${date}
+Transaction: ${type}
+Amount: UGX ${amount}
+Balance: UGX ${balance}
+`;
+
+let blob = new Blob([receipt], {type:"text/plain"});
+let link = document.createElement("a");
+
+link.href = URL.createObjectURL(blob);
+link.download = "receipt.txt";
+link.click();
+
+}
+
+
+window.downloadReceipt = function(index){
+
+let rows = document.querySelectorAll("#txnHistory tr");
+let row = rows[index].children;
+
+let date = row[1].innerText;
+let type = row[2].innerText;
+let amount = row[3].innerText;
+let balance = row[4].innerText;
+
+let member = document.getElementById("memberTitle").innerText;
+
+const { jsPDF } = window.jspdf;
+
+let receiptNumber = "RCPT-" + Math.floor(Math.random()*100000);
+
+let doc = new jsPDF();
+
+doc.setFontSize(18);
+doc.text("CONQUERORS SAVINGS SACCO",20,20);
+
+doc.setFontSize(12);
+doc.text("Official Transaction Receipt",20,30);
+
+doc.line(20,35,190,35);
+
+doc.text("Receipt No: "+receiptNumber,20,50);
+doc.text("Member: "+member,20,60);
+doc.text("Date: "+date,20,70);
+doc.text("Transaction: "+type,20,80);
+doc.text("Amount: UGX "+amount,20,90);
+doc.text("Balance: UGX "+balance,20,100);
+
+doc.line(20,110,190,110);
+
+doc.text("Thank you for saving with us!",20,120);
+
+doc.save("SACCO_Receipt.pdf");
 }
