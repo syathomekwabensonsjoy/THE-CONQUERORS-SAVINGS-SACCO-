@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-html, body{
+html,body{
 height:100%;
 margin:0;
 }
@@ -31,6 +31,7 @@ flex:1;
 min-height:100%;
 padding:20px;
 box-sizing:border-box;
+display:none;
 }
 
 footer{
@@ -41,13 +42,18 @@ color:white;
 font-size:14px;
 margin-top:auto;
 }
+
+.member-photo{
+width:120px;
+height:120px;
+border-radius:10px;
+object-fit:cover;
+}
 </style>
 
 </head>
 
 <body>
-
-<!-- HEADER -->
 
 <div class="app-header">
 
@@ -73,58 +79,70 @@ Save Together, Grow Together
 
 <p>
 Welcome to <b>THE CONQUERORS SAVINGS SACCO</b>, where unity and discipline turn small savings into big opportunities.
-Here, every member contributes to a stronger financial future for all.
 Together we support, grow, and succeed as a family.
 <b>Save Together, Grow Together</b>.
 </p>
 
-<button onclick="showLogin()">Continue</button>
 
-<!-- SACCO INFO BOXES -->
+<button onclick="showLogin()">Continue</button>
 
 <div class="sacco-info">
 
-<div class="info-box">
-<h3>About</h3>
+<h3>ABOUT THE SACCO</h3>
 <p>
-THE CONQUERORS SAVINGS SACCO is a family-based savings group that promotes financial discipline, cooperation, and mutual support among members to help them grow their savings and build a stable financial future together.
+The Conquerors Savings SACCO is a family-based financial community built on trust,
+unity, and shared growth. Our goal is to help members develop a strong saving
+culture while supporting each other financially. Through discipline and
+cooperation, members grow their savings, access support during challenges,
+and invest in a better future. Together we turn small contributions into
+big opportunities for stability and long-term success.
 </p>
-</div>
 
-<div class="info-box">
-<h3>Mission</h3>
+<h3>SERVICES</h3>
 <p>
-To promote disciplined saving, cooperation, and shared financial growth among family members for a stable and successful future.
+Savings, small loans, emergency support, financial guidance, member welfare support.
 </p>
-</div>
 
-<div class="info-box">
-<h3>Services</h3>
+<h3>MISSION</h3>
 <p>
-Member savings accounts, deposits, withdrawals, financial records, and savings monitoring.
+To empower families through disciplined saving, mutual support,
+and responsible financial growth for stronger households and
+sustainable community development.
 </p>
-</div>
 
 </div>
-<!-- ABOUT DEVELOPER CARD (Homepage Only) -->
+<div class="deposit-card">
 
-<a href="Developer.html" class="developer-card">
+<h3>💰 DEPOSIT SAVINGS</h3>
 
-<img src="admin.jpg" class="dev-img">
+<p class="deposit-text">Send your savings using Mobile Money</p>
 
-<div class="dev-info">
+<div class="deposit-number">
+📱 <a href="tel:0776083223">0776083223</a>
+</div>
+
+<p class="account-name">Account Name: <b>ITHUNGU JONOLESS</b></p>
+
+<button onclick="copyNumber()">Copy Number</button>
+
+</div>
+<div class="developer-card" onclick="openDeveloper()">
+
+<img src="admin.jpg">
+
 <h3>ABOUT THE DEVELOPER</h3>
+
 <p>SYATHOMEKWA BENSONS JOY</p>
-<p style="font-size:13px;color:gray;">Tap to view profile</p>
-</div>
 
-</a>
+<span>Tap to view</span>
 
 </div>
+</div>
+
 <!-- LOGIN PAGE -->
 
-<div id="loginPage" class="page" style="background: linear-gradient(135deg, #2F4F4F, #3A5F5F);">
-
+<div id="loginPage" class="page"
+style="background:#555555">
 <h2>Account Access</h2>
 
 <button onclick="showUserLogin()">User Login</button>
@@ -134,10 +152,9 @@ Member savings accounts, deposits, withdrawals, financial records, and savings m
 
 </div>
 
-
 <!-- USER LOGIN -->
 
-<div id="userLoginPage" class="page" style="background:pink;">
+<div id="userLoginPage" class="page">
 
 <h2>User Login</h2>
 
@@ -150,10 +167,9 @@ Member savings accounts, deposits, withdrawals, financial records, and savings m
 
 </div>
 
-
 <!-- CREATE ACCOUNT -->
 
-<div id="createPage" class="page" style="background:pink;">
+<div id="createPage" class="page"style="background:#FFA500;">
 
 <h2>Create Account</h2>
 
@@ -163,41 +179,21 @@ Member savings accounts, deposits, withdrawals, financial records, and savings m
 <input id="confirmPin" type="password" placeholder="Confirm PIN">
 <input id="newAnswer" placeholder="Security Answer">
 
-<h3>Terms and Conditions – The Conquerors Savings SACCO</h3>
-
-<p style="font-size:14px; max-height:150px; overflow:auto; border:1px solid #ccc; padding:10px; background:#fff;">
-
-Membership in The Conquerors Savings SACCO requires commitment to regular saving and responsible participation. Every member is expected to contribute agreed savings within the set timelines to promote the growth and sustainability of the SACCO.
-
-All deposits, withdrawals, and other transactions must be properly recorded and confirmed by the SACCO administrator. Members must provide accurate personal information during registration.
-
-Members are responsible for protecting their account login details. Any misuse of the SACCO platform may lead to suspension or termination.
-
-The SACCO leadership reserves the right to update these terms when necessary to improve service delivery and financial management.
-
-</p>
-
-<br>
-
 <label>
 <input type="checkbox" id="agreeTerms">
-I agree to the Terms and Conditions of THE CONQUERORS SAVINGS SACCO
+I agree to Terms and Conditions
 </label>
 
 <br><br>
 
 <button onclick="createAccount()">Create Account</button>
-<button onclick="createAccount()">Create</button>
-
 <button onclick="showLogin()">Back</button>
 
 </div>
 
-
 <!-- RESET PASSWORD -->
 
-<div id="resetPage" class="page" style="background:red;">
-
+<div id="resetPage" class="page"style="background:#FFA500;">
 <h2>Reset Password</h2>
 
 <input id="resetUser" placeholder="Username">
@@ -209,135 +205,103 @@ I agree to the Terms and Conditions of THE CONQUERORS SAVINGS SACCO
 
 </div>
 
-
 <!-- ADMIN LOGIN -->
 
-<div id="adminLogin" class="page" style="background:olive;">
-
+<div id="adminLogin" class="page">
+<body style="background:#FFA500;">
 <h2>Admin Login</h2>
 
-<input id="adminPass" type="password">
+<input id="adminPass" type="password" placeholder="Admin Password">
 
 <button onclick="loginAdmin()">Login</button>
 <button onclick="showLogin()">Back</button>
 
 </div>
 
-
 <!-- DASHBOARD -->
 
-<div id="dashboard" class="page" style="background:skyblue;">
+<div id="dashboard" class="page" style="background: orange;">
 
 <h2>Dashboard</h2>
 
 <h3>Total Savings: UGX <span id="totalSavings">0</span></h3>
 
-<canvas id="mainChart" height="200"></canvas>
+<canvas id="mainChart"></canvas>
 
 <button onclick="openMembersPage()">Members</button>
 <button onclick="logout()">Logout</button>
 
 </div>
 
-
 <!-- MEMBERS PAGE -->
 
-<div id="membersPage" class="page" style="background:skyblue;">
+<div id="membersPage" class="page" style="background:#E6F7FF;">
 
-<h2>Members</h2>
+<!-- ADD MEMBER SECTION -->
+<div id="addMemberSection">
 
-<input id="searchMembersInput" placeholder="Search members" onkeyup="searchMembers()">
+<h2>Add New Member</h2>
 
-<button onclick="showAddMember()">➕ Add New Member</button>
+<input id="memberName" placeholder="Member Name">
+
+<input id="memberPhoneInput" placeholder="Phone Number">
+
+<input type="file" id="memberPhoto" accept="image/*">
+
+<button id="addMemberBtn" onclick="openAddMember()">Add Member</button>
+
+</div>
+
+<hr>
+
+<!-- MEMBERS LIST -->
+<input id="searchMember" placeholder="Search member..." onkeyup="searchMembers()">
+
+<h3>Members</h3>
 
 <div id="membersList"></div>
 
 <button onclick="openDashboard()">Back</button>
 
 </div>
-
-
-<!-- ADD MEMBER -->
-
-<div id="addMemberPage" class="page" style="background:navy;">
-
-<h2>Add New Member</h2>
-
-<input id="newMemberName" placeholder="Member Name">
-<input id="newMemberPhone" placeholder="Phone Number">
-
-<p>Upload Member Photo</p>
-
-<input type="file" id="newMemberPhoto">
-
-<button onclick="addMember()">Save Member</button>
-<button onclick="openMembersPage()">Back</button>
+</div>
 
 </div>
 
-
 <!-- MEMBER PROFILE -->
-
-<div id="memberPage" class="page" style="background:orange;">
-
-<div class="member-profile">
-
-<img id="profileImg" class="profile-img" src="img/home.jpg">
+<div id="memberPage" class="page" style="background:purple; color:white;">
 
 <h2 id="memberTitle"></h2>
 
-<p><b>Phone:</b> <span id="memberPhone"></span></p>
-<p><b>Member ID:</b> <span id="memberID"></span></p>
-<p><b>Joined:</b> <span id="memberJoin"></span></p>
+<img id="memberPhotoDisplay" onclick="changePhoto()">
+<p><b>Phone:</b> <span id="memberPhoneDisplay"></span></p>
+
+<button onclick="callMember()">📞 Call</button>
+<button onclick="whatsappMember()">💬 WhatsApp</button>
 
 <h3>Balance: UGX <span id="balance">0</span></h3>
-
-</div>
-
-<div id="userControls">
-
-<a id="callBtn">📞 Call Member</a>
-
-<br><br>
-
-<a id="whatsappBtn" target="_blank">💬 WhatsApp</a>
-
-<br><br>
-
-<button onclick="downloadStatement()">📄 Download Statement</button>
-
-</div>
-
-<div id="adminControls">
-
+<button id="editProfileBtn" onclick="editProfile()">Edit Profile</button>
 <h3>Transaction</h3>
 
+<div id="amountSection">
 <input id="amount" type="number" placeholder="Enter amount">
-<input id="reason" placeholder="Reason">
 
 <button onclick="addSaving()">Deposit</button>
-<button onclick="withdraw()">Withdraw</button>
-<button onclick="editTransaction()">Edit Transaction</button>
-<button onclick="deleteTransaction()">Delete Transaction</button>
-<button onclick="showEditMember()">Edit Member</button>
-
 </div>
+<button id="withdrawBtn" onclick="withdrawSaving()">Withdraw</button>
 
 <h3>Transaction History</h3>
 
-<table class="txn-table">
+<table>
 
 <thead>
-
 <tr>
 <th>#</th>
 <th>Date</th>
-<th>Reason</th>
-<th>Deposit</th>
-<th>Withdraw</th>
+<th>Type</th>
+<th>Amount</th>
 <th>Balance</th>
 </tr>
-
 </thead>
 
 <tbody id="txnHistory"></tbody>
@@ -348,41 +312,44 @@ I agree to the Terms and Conditions of THE CONQUERORS SAVINGS SACCO
 
 </div>
 
-
-<!-- EDIT MEMBER PAGE -->
-
-<div id="editMemberPage" class="page" style="background:pink;">
-
-<h2>Edit Member</h2>
-
-<input id="editMemberName" placeholder="Member Name">
-<input id="editMemberPhone" placeholder="Phone">
-
-<p>Change Photo</p>
-
-<input type="file" id="editMemberPhoto">
-
-<button onclick="saveMemberEdit()">Save Changes</button>
-<button onclick="openMember(currentMember)">Cancel</button>
-
 </div>
-
-</div>
-
 
 <footer>
 
-<p>© <span id="year"></span> <b>THE CONQUERORS SAVINGS SACCO</b>. All Rights Reserved.</p>
+<p>© <span id="year"></span> <b>THE CONQUERORS SAVINGS SACCO</b></p>
 <p>Save Together, Grow Together</p>
 
 </footer>
-
 
 <script>
 document.getElementById("year").innerText = new Date().getFullYear();
 </script>
 
-<script src="script.js"></script>
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyAg3AW67dVcqFunK-tXoBCd_m-BlOL15SY",
+authDomain: "the-conquerors-savings-sacco.firebaseapp.com",
+projectId: "the-conquerors-savings-sacco",
+storageBucket: "the-conquerors-savings-sacco.firebasestorage.app",
+messagingSenderId: "1021321607702",
+appId: "1:1021321607702:web:22d825215d769168001337",
+measurementId: "G-B3GPM61G38"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.db = db;
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
