@@ -49,6 +49,23 @@ height:120px;
 border-radius:10px;
 object-fit:cover;
 }
+
+.help-button{
+position:fixed;
+bottom:20px;
+right:20px;
+width:55px;
+height:55px;
+background:#22c55e;
+color:white;
+font-size:28px;
+text-align:center;
+line-height:55px;
+border-radius:50%;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+z-index:1000;
+}
 </style>
 
 </head>
@@ -351,6 +368,6 @@ window.db = db;
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script type="module" src="script.js"></script>
-
+<a href="help.html" class="help-button">?</a>
 </body>
 </html>
